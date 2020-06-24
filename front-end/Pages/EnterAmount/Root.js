@@ -14,7 +14,7 @@ export default function EnterAmount() {
 			<Header />
 			<AmountDisplayer amount={amount} />
 			<KeyPad amount={amount} setAmount={setAmount} />
-			<SubmitButton />
+			<SubmitButton amount={amount} />
 		</View>
 	);
 }
