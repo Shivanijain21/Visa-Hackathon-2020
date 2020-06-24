@@ -16,14 +16,16 @@ const styles = StyleSheet.create({
 export default function ({ amount, setAmount }) {
 	return (
 		<View style={styles.Container}>
-			{['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', '<'].map((number, index) => (
-				<DigitButton
-					digit={number}
-					amount={amount}
-					setAmount={setAmount}
-					key={index}
-				/>
-			))}
+			{['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', '<'].map(
+				(number, index) => (
+					<DigitButton
+						digit={number}
+						amount={amount}
+						setAmount={setAmount}
+						key={index}
+					/>
+				)
+			)}
 		</View>
 	);
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
-
-import EnterAmount from './Pages/EnterAmount/Root';
+import Header from './Components/Header';
+import Transaction from './Pages/Transaction/Root';
 
 const theme = {
 	...DefaultTheme,
@@ -14,7 +14,8 @@ const theme = {
 export default function App() {
 	return (
 		<PaperProvider theme={theme}>
-			<EnterAmount />
+			<Header />
+			<Transaction />
 		</PaperProvider>
 	);
 }
