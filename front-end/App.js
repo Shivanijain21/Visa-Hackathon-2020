@@ -1,7 +1,7 @@
 import React from 'react';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
-import EnterAmount from './Pages/EnterAmount';
+import EnterAmount from './Pages/EnterAmount/Root';
 
 const theme = {
 	...DefaultTheme,
