@@ -1,13 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
 
 export default function DigitButton(props) {
 	return (
 		<Button
+			contentStyle={styles.button}
+			labelStyle={styles.text}
 			compact='true'
 			mode='text'
-			m
 			onPress={() => {
 				console.log(props.digit);
 			}}
@@ -16,3 +17,18 @@ export default function DigitButton(props) {
 		</Button>
 	);
 }
+
+const styles = StyleSheet.create({
+	button: {
+		marginVertical: 35,
+		marginLeft: 50,
+		marginRight: 50,
+	},
+	text: {
+		color: '#FFFF',
+		fontSize: 25,
+		fontWeight: 'bold',
+	},
+});
+
+// index=main  sourcetype = vendor_sales/vendor_sales | table AcctID |stats count by AcctID

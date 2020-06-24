@@ -1,11 +1,11 @@
 import React from 'react';
-import { Appbar, Text, Button } from 'react-native-paper';
+import { Appbar, Text, Button, Surface } from 'react-native-paper';
 import { StyleSheet, View } from 'react-native';
 import DigitButton from '../Components/DigitButton';
 
 export default function EnterAmount() {
 	return (
-		<View>
+		<View style={{ flex: 1 }}>
 			{/* App Header */}
 			<Appbar.Header>
 				<Appbar.BackAction
@@ -21,26 +21,28 @@ export default function EnterAmount() {
 			</Appbar.Header>
 
 			{/* Text Amount Container */}
-			<View style={styles.AmountContainer}>
+			<Surface style={styles.AmountContainer}>
 				<Text style={styles.AmountText}> $ 0.00 </Text>
-			</View>
+			</Surface>
 
 			{/* Digit Button Container */}
 			<View style={styles.DigitsButtonContainer}>
-				{[1, 2, 3, 4, 5, 6, 7, 8, 9].map((number, index) => (
+				{[1, 2, 3, 4, 5, 6, 7, 8, 9, ' ', 0, '<'].map((number, index) => (
 					<DigitButton digit={number} key={index} />
 				))}
 			</View>
 
 			{/* Submit Payment Button*/}
-			<Button
-				contentStyle={styles.SubmitPaymentContainer}
-				labelStyle={styles.SubmitPaymentText}
-				mode='contained'
-				onPress={() => console.log('Pressed')}
-			>
-				SUBMIT PAYMENT
-			</Button>
+			<View style={{ flex: 1 }}>
+				<Button
+					contentStyle={styles.SubmitPaymentContainer}
+					labelStyle={styles.SubmitPaymentText}
+					mode='contained'
+					onPress={() => console.log('Pressed')}
+				>
+					SUBMIT PAYMENT
+				</Button>
+			</View>
 		</View>
 	);
 }
@@ -48,16 +50,19 @@ export default function EnterAmount() {
 const styles = StyleSheet.create({
 	DigitsButtonContainer: {
 		backgroundColor: '#FDBB0A',
-		alignSelf: 'stretch',
-		height: 420,
+		flex: 6,
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		alignContent: 'center',
+		justifyContent: 'center',
 	},
 
 	AmountContainer: {
-		alignSelf: 'stretch',
+		flex: 2,
 		backgroundColor: '#262D9B',
-		height: 210,
 		alignItems: 'center',
 		justifyContent: 'center',
+		elevation: 20,
 	},
 
 	AmountText: {
