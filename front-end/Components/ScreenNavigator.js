@@ -8,9 +8,10 @@ import ScreenNames from '../Screens/Names';
 const Stack = createStackNavigator();
 
 export default function ScreenNavigator() {
-	return (
+	return ( 
 		<NavigationContainer>
 			<Stack.Navigator
+				gestureNavigation=''
 				screenOptions={{
 					headerStyle: {
 						backgroundColor: '#262D9B',
