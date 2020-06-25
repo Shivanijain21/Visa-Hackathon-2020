@@ -1,6 +1,7 @@
 import React, { isValidElement } from 'react';
 import { Button } from 'react-native-paper';
 import { StyleSheet, View } from 'react-native';
+import ScreenNames from '../Names';
 
 const styles = StyleSheet.create({
 	Container: {
@@ -40,7 +41,7 @@ export default function ({ amount, setBusy, navigate }) {
 		setBusy(true);
 		setTimeout(() => {
 			setBusy(false);
-			navigate('Transaction Success', { amount });
+			navigate(ScreenNames.TransactionSuccessScreen, { amount });
 		}, 3000);
 	};
 

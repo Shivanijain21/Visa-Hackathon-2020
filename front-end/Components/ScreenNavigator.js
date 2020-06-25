@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import Transaction from '../Screens/Transaction/Root';
 import TransactionSuccess from '../Screens/TransactionSuccess/Root';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import ScreenNames from '../Screens/Names';
 
 const Stack = createStackNavigator();
 
@@ -18,9 +18,12 @@ export default function ScreenNavigator() {
 					headerTintColor: '#fff',
 				}}
 			>
-				<Stack.Screen name='Transaction' component={Transaction} />
 				<Stack.Screen
-					name='Transaction Success'
+					name={ScreenNames.TransactionScreen}
+					component={Transaction}
+				/>
+				<Stack.Screen
+					name={ScreenNames.TransactionSuccessScreen}
 					component={TransactionSuccess}
 				/>
 			</Stack.Navigator>
