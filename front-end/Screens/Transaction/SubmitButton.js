@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default function ({ amount, setBusy }) {
+export default function ({ amount, setBusy, navigate }) {
 	const isAmountValid = () => {
 		const [wholePart, decimalPart] = amount.split('.');
 
@@ -40,6 +40,7 @@ export default function ({ amount, setBusy }) {
 		setBusy(true);
 		setTimeout(() => {
 			setBusy(false);
+			navigate('Transaction Success', { amount });
 		}, 3000);
 	};
 
