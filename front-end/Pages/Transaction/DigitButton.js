@@ -1,12 +1,15 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { Button } from 'react-native-paper';
+const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-	button: {
-		marginVertical: 35,
-		marginLeft: 50,
-		marginRight: 50,
+	buttonContainer: {
+		flex: 1,
+	},
+	buttonStyle: {
+		width: width / 3,
+		height: height / 7,
 	},
 	text: {
 		color: '#FFFF',
@@ -45,7 +48,8 @@ export default function ({ digit, amount, setAmount }) {
 
 	return (
 		<Button
-			contentStyle={styles.button}
+			style={styles.buttonContainer}
+			contentStyle={styles.buttonStyle}
 			labelStyle={styles.text}
 			compact='true'
 			mode='text'
@@ -55,4 +59,3 @@ export default function ({ digit, amount, setAmount }) {
 		</Button>
 	);
 }
-// index=main  sourcetype = vendor_sales/vendor_sales | table AcctID |stats count by AcctID
