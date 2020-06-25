@@ -4,6 +4,7 @@ import TransactionSuccess from '../Screens/TransactionSuccess/Root';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ScreenNames from '../Screens/Names';
+import SetUp from '../Screens/SetUp/Root';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,10 @@ export default function ScreenNavigator() {
 					headerTintColor: '#fff',
 				}}
 			>
+				<Stack.Screen
+					name = {ScreenNames.SetUp}
+					component={SetUp}
+				/>
 				<Stack.Screen
 					name={ScreenNames.TransactionScreen}
 					component={Transaction}
