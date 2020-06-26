@@ -1,7 +1,6 @@
 import React from 'react';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
-import Header from './Components/header';
-import Transaction from './Pages/Transaction/Root';
+import ScreenNavigator from './Components/ScreenNavigator';
 
 const theme = {
   ...DefaultTheme,
@@ -14,8 +13,7 @@ const theme = {
 export default function App() {
   return (
     <PaperProvider theme={theme}>
-      <Header />
-      <Transaction />
+      <ScreenNavigator />
     </PaperProvider>
   );
 }

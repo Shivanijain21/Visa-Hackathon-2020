@@ -1,6 +1,7 @@
 import React, { isValidElement } from 'react';
 import { Button } from 'react-native-paper';
 import { StyleSheet, View } from 'react-native';
+import ScreenNames from '../Names';
 
 const styles = StyleSheet.create({
 	Container: {
@@ -12,7 +13,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default function ({ amount, setBusy }) {
+export default function ({ amount, setBusy, navigate }) {
 	const isAmountValid = () => {
 		const [wholePart, decimalPart] = amount.split('.');
 
@@ -40,6 +41,7 @@ export default function ({ amount, setBusy }) {
 		setBusy(true);
 		setTimeout(() => {
 			setBusy(false);
+			navigate(ScreenNames.TransactionSuccessScreen, { amount });
 		}, 3000);
 	};
 
