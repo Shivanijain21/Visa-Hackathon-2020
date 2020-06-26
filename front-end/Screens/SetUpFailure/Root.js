@@ -28,8 +28,7 @@ const styles = StyleSheet.create({
 	},
 	Alert: {
 		flex: .11,
-        paddingBottom: 25,
-        paddingLeft: 18,
+        paddingBottom: 15,
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
@@ -41,9 +40,11 @@ export default function SetUpFailure({ navigation: {navigate } }) {
 		<View style={styles.Container}>
             <Text style={styles.ErrorText}>ERROR!</Text>
 
-            <Button icon="alert" style={[styles.Alert, {
-                transform: [{scale: 7}]
-            }]}/>
+			<Button icon="alert" labelStyle={{
+				color: 'red',
+				margin: 20,
+				fontSize: 100,
+            }}/>
 
             <View style={{ paddingBottom: 20 }}>
                 <Text style={styles.BodyText}>  

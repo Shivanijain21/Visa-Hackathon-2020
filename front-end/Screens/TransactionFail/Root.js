@@ -43,9 +43,11 @@ export default function TransactionFail({ navigation, route }) {
 		<View style={styles.Container}>
 			<Text style={styles.ErrorText}>ERROR!</Text>
 
-			<Button icon="alert" style={[styles.Alert, {
-				transform: [{scale: 7}]
-			}]}/>
+			<Button icon="alert" labelStyle={{
+				color: 'red',
+				margin: 20,
+				fontSize: 100,
+            }}/>
 
 			<View style={{ paddingBottom: 10 }}>
 				<Text style={styles.BodyText}>

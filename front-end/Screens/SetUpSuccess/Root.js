@@ -41,9 +41,11 @@ export default function SetUpSuccess({ navigation: {navigate } }) {
 	return (
 		<View style={styles.Container}>
 			<View>
-				<Button icon="check-circle" style={[styles.Circle, {
-                    transform: [{scale: 9}]
-				}]}/>
+				 <Button icon="check-circle" labelStyle={{
+                    color: 'green',
+                    margin: 20,
+                    fontSize: 100,
+                }}/>
 			</View>
 
 			<Text style={styles.SuccessText}>Setup Complete!</Text>
