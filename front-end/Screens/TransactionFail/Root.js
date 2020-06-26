@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import TryAgainButton from './TryAgainButton';
-//import HomeButton from './HomeButton';
+import HomeButton from '../TransactionSuccess/HomeButton';
 import { Button } from 'react-native-paper';
 
 const styles = StyleSheet.create({
@@ -18,23 +18,12 @@ const styles = StyleSheet.create({
 		color: 'red',
 		fontWeight: 'bold',
 		fontSize: 36,
-		paddingTop: 10,
-		paddingBottom: 20,
-		flex: .45,
 	},
 	BodyText: {
 		fontSize: 24,
 		color: '#1A1F71',
 		textAlign: 'center',
-		paddingTop: 20,
 		paddingBottom: 10,
-	},
-	Alert: {
-		flex: .11,
-		paddingBottom: 10,
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'center',
 	},
 });
 
@@ -42,23 +31,24 @@ export default function TransactionFail({ navigation, route }) {
 	return (
 		<View style={styles.Container}>
 			<Text style={styles.ErrorText}>ERROR!</Text>
-
 			<View>
-				<Button icon="alert" labelStyle={{
-       				color: 'red',
-             		fontSize: 200,
- 				}}/>
+				<Button
+					icon='alert'
+					labelStyle={{
+						color: 'red',
+						fontSize: 150,
+					}}
+				/>
 			</View>
-
-			<View style={{ paddingBottom: 10 }}>
+			<View>
 				<Text style={styles.BodyText}>
-					Transaction unsuccessful.{"\n"}
-                    Please try again.
+					Transaction unsuccessful.{'\n'}
+					Please try again.
 				</Text>
 			</View>
-			<View style={{flex: 1}}>
-				<TryAgainButton/>
-				{/* <HomeButton/> */}
+			<View>
+				<TryAgainButton />
+				<HomeButton />
 			</View>
 		</View>
 	);
