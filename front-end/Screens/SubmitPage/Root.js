@@ -1,49 +1,52 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import React, { Component } from 'react';
+import { Text,TextInput, View, StyleSheet } from 'react-native';
 import SubmitButton from './SubmitButton';
 import { Button } from 'react-native-paper';
 
 const styles = StyleSheet.create({
 	Container: {
-		flex: 1,
+		//flex: 1,
 		flexDirection: 'column',
 		alignItems: 'center',
-		justifyContent: 'center',
+        justifyContent: 'center',
 		paddingTop: 20,
 		paddingLeft: 50,
         paddingRight: 50,
 	},
-	// SuccessText: {
-	// 	color: '#FDBB0A',
-	// 	fontWeight: 'bold',
-	// 	fontSize: 36,
-	// 	paddingTop: 10,
-	// 	flex: .5,
-	// },
-	// BodyText: {
-	// 	fontSize: 24,
-	// 	color: '#1A1F71',
-	// 	textAlign: 'center',
-	// 	paddingBottom: 10,
-	// },
-	// Circle: {
-	// 	flex: .11,
-    //     paddingBottom: 10,
-    //     paddingLeft: 17,
-    //     paddingTop: 10,
-	// 	flexDirection: 'column',
-	// 	alignItems: 'center',
-    //     justifyContent: 'center',
-	// },
 });
 
 export default function SubmitPage({ navigation: {navigate } }) {
 	return (
-		<View style={styles.Container}>
-			{/* <Text style={styles.SuccessText}>Setup Complete!</Text> */}
-			<View>
-				<SubmitButton navigate={navigate}/>
-			</View>
-		</View>
+        <View style={styles.Container}>
+            <View style={{ paddingTop: 80 }}>
+                <TextInput
+                    style={{ 
+                        height: 50,
+                        width: 300, 
+                        margin: 20,
+                        padding: 10,
+                        borderColor: 'gray', 
+                        borderWidth: 1 
+                    }}
+                    placeholder = 'Enter UserId'
+                />
+
+                <TextInput
+                    style={{ 
+                        height: 50, 
+                        width: 300, 
+                        margin: 20,
+                        padding: 10,
+                        borderColor: 'gray', 
+                        borderWidth: 1 
+                    }}
+                    placeholder = 'Enter Password'
+                />
+
+                <View style={{ paddingTop: 200 }}>
+                    <SubmitButton navigate={navigate}/>
+                </View>
+            </View>
+        </View>
 	);
 }
