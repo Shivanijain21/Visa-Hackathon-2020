@@ -1,0 +1,38 @@
+
+Product Name: Visa Direct
+Api Name: Funds Transfer API
+
+Nov 13, 2019 12:22:46 PM com.visa.developer.sample.funds_transfer_api.ApiClient$ApiClientHttpRequestInterceptor logRequest
+INFO: URI: https://sandbox.api.visa.com/visadirect/fundstransfer/v1/pullfundstransactions
+Nov 13, 2019 12:22:46 PM com.visa.developer.sample.funds_transfer_api.ApiClient$ApiClientHttpRequestInterceptor logRequest
+INFO: HTTP Method: POST
+Nov 13, 2019 12:22:46 PM com.visa.developer.sample.funds_transfer_api.ApiClient$ApiClientHttpRequestInterceptor logRequest
+INFO: HTTP Headers: Accept=[application/json],Content-Type=[application/json],Authorization=[Basic NVBTRlFTM0xUVzI2NFdCREdQTkkyMTRfUE9HeTAwMDU1V0VRb3BXOUVYazdBdzNPODpJTHRWMFN4VWUxMUFuNGhEQWRyeEI3MXRjSw==],User-Agent=[VDP_SampleCode_Java],Content-Length=[758]
+Nov 13, 2019 12:22:46 PM com.visa.developer.sample.funds_transfer_api.ApiClient$ApiClientHttpRequestInterceptor logRequest
+INFO: Request Body: {"businessApplicationId":"AA","cpsAuthorizationCharacteristicsIndicator":"Y","retrievalReferenceNumber":"330000550000","cardAcceptor":{"idCode":"ABCD1234ABCD123","address":{"county":"081","country":"USA","state":"CA","zipCode":"94404"},"name":"Visa Inc. USA-Foster City","terminalId":"ABCD1234"},"surcharge":"11.99","acquirerCountryCode":840,"amount":124.02,"nationalReimbursementFee":11.22,"cavv":"0700100038238906000013405823891061668252","addressVerificationData":{"postalCode":"12345","street":"XYZ St"},"acquiringBin":408999,"foreignExchangeFeeTransaction":11.99,"senderPrimaryAccountNumber":"4895142232120006","localTransactionDateTime":"2019-11-13T12:22:46","senderCardExpiryDate":"2015-10","systemsTraceAuditNumber":451001,"senderCurrencyCode":"USD"}
+Nov 13, 2019 12:22:48 PM com.visa.developer.sample.funds_transfer_api.ApiClient$ApiClientHttpRequestInterceptor logResponse
+INFO: HTTP Status Code: 200
+Nov 13, 2019 12:22:48 PM com.visa.developer.sample.funds_transfer_api.ApiClient$ApiClientHttpRequestInterceptor logResponse
+INFO: Status Text: OK
+Nov 13, 2019 12:22:48 PM com.visa.developer.sample.funds_transfer_api.ApiClient$ApiClientHttpRequestInterceptor logResponse
+INFO: HTTP Headers: Server=[nginx],Content-Type=[application/json;charset=UTF-8],Content-Length=[223],X-SERVED-BY=[l73c018],X-CORRELATION-ID=[1573633368_247_622246909_l73c018_VDP_WS],X-APP-STATUS=[200,200],X-Backside-Transport=[OK OK,OK OK],X-Global-Transaction-ID=[69536f0d5dcbbd58222048fd],X-Frame-Options=[SAMEORIGIN],X-XSS-Protection=[1; mode=block],X-Content-Type-Options=[nosniff],Strict-Transport-Security=[max-age=2592000;includeSubdomains],Cache-Control=[no-cache, no-store, must-revalidate],Pragma=[no-cache],Expires=[-1],Content-Language=[en-US],Date=[Wed, 13 Nov 2019 08:22:48 GMT],Connection=[keep-alive]
+Nov 13, 2019 12:22:48 PM com.visa.developer.sample.funds_transfer_api.ApiClient$ApiClientHttpRequestInterceptor logResponse
+INFO: Response Body: {"transactionIdentifier":426454642851034,"actionCode":"00","approvalCode":"98765X","responseCode":"5","transmissionDateTime":"2019-11-13T08:22:48.000Z","cavvResultCode":"8","cpsAuthorizationCharacteristicsIndicator":"3333"}
+
+class PullfundspostResponse {
+    networkId: null
+    approvalCode: 98765X
+    feeProgramIndicator: null
+    last4ofPAN: null
+    merchantVerificationValue: null
+    cavvResultCode: 8
+    statusIdentifier: null
+    transactionIdentifier: 426454642851034
+    memberComments: null
+    responseCode: 5
+    actionCode: 00
+    cpsAuthorizationCharacteristicsIndicator: 3333
+    reimbursementAttribute: null
+    transmissionDateTime: 2019-11-13T08:22:48.000Z
+}
+
