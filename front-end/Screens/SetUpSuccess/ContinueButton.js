@@ -5,18 +5,17 @@ import ScreenNames from '../Names';
 
 const styles = StyleSheet.create({
 	Button: {
-        height: 68,
+		height: 68,
 	},
 	Text: {
 		fontSize: 28,
-    },
-    Container:{
-    }
+	},
+	Container: {},
 });
 
-export default function ({navigate}) {
-    const continueToTransaction = () => {
-		navigate(ScreenNames.TransactionScreen);
+export default function ({ navigate }) {
+	const continueToTransaction = () => {
+		navigate(ScreenNames.MainScreen);
 	};
 	return (
 		<View style={styles.Container}>
