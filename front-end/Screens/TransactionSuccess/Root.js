@@ -42,11 +42,10 @@ export default function TransactionSuccess({ navigation, route }) {
 			<Text style={styles.SuccessText}>SUCCESS!</Text>
 
 			<View>
-				 <Button icon="check-circle" labelStyle={{
-                    color: 'green',
-                    margin: 20,
-                    fontSize: 100,
-                }}/>
+				<Button icon="check-circle" labelStyle={{
+       				color: 'green',
+             		fontSize: 200,
+ 				}}/>
 			</View>
 
 			<View style={{ paddingBottom: 40 }}>
