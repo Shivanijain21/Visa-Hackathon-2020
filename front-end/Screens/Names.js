@@ -1,9 +1,10 @@
 export default ScreeNames = {
 	TransactionScreen: 'Transaction',
-	TransactionSuccessScreen: 'Transaction Success',
-	InputCredentialsStep1: 'Enter API Key',
-	InputCredentialsStep2: 'Enter Shared Secret',
-	InputCredentialsStep3: 'Enter Certificate',
-	InputCredentialsStep4: 'Enter Key',
-	InputCredentialsStep5: 'Enter Client Certificate',
+	TransactionSuccessScreen: 'TransactionSuccess',
+	TransactionFailureScreen: 'TransactionFailureScreen',
+	InputCredentialsStep1: 'EnterAPIKey',
+	InputCredentialsStep2: 'EnterSharedSecret',
+	InputCredentialsStep3: 'EnterCertificate',
+	InputCredentialsStep4: 'EnterKey',
+	InputCredentialsStep5: 'EnterClientCertificate',
 };
