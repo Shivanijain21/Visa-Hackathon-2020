@@ -1,26 +1,32 @@
 import React from 'react';
 import { Button } from 'react-native-paper';
 import { StyleSheet, View } from 'react-native';
+import ScreenNames from '../Names';
 
 const styles = StyleSheet.create({
 	Button: {
-		height: 68,
+        height: 68,
 	},
 	Text: {
 		fontSize: 28,
-	},
+    },
+    Container:{
+    }
 });
 
-export default function () {
+export default function ({navigate}) {
+    const continueToTransaction = () => {
+		navigate(ScreenNames.TransactionScreen);
+	};
 	return (
-		<View>
+		<View style={styles.Container}>
 			<Button
 				contentStyle={styles.Button}
 				labelStyle={styles.Text}
 				mode='contained'
-				onPress={() => console.log('Pressed')}
+				onPress={() => continueToTransaction()}
 			>
-				Return Home
+				Continue
 			</Button>
 		</View>
 	);
