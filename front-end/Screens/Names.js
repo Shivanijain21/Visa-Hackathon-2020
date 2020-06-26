@@ -1,4 +1,7 @@
 export default ScreeNames = {
+	SetUp: 'SetUp',
+	SetUpSuccessScreen: 'SetUp Success',
+	SetUpFailureScreen: 'SetUp Failure',
 	TransactionScreen: 'Transaction',
 	TransactionSuccessScreen: 'TransactionSuccess',
 	TransactionFailureScreen: 'TransactionFailureScreen',
@@ -7,4 +10,5 @@ export default ScreeNames = {
 	InputCredentialsStep3: 'EnterCertificate',
 	InputCredentialsStep4: 'EnterKey',
 	InputCredentialsStep5: 'EnterClientCertificate',
+	SubmitPageScreen: 'SubmitPage',
 };

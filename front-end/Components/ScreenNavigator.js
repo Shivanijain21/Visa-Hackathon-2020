@@ -3,8 +3,12 @@ import { Text } from 'react-native';
 import { Button } from 'react-native-paper';
 import Transaction from '../Screens/Transaction/Root';
 import TransactionSuccess from '../Screens/TransactionSuccess/Root';
+import SetUp from '../Screens/SetUp/Root';
+import SetUpSuccess from '../Screens/SetUpSuccess/Root';
+import SetUpFailure from '../Screens/SetUpFailure/Root';
 import TransactionFailure from '../Screens/TransactionFail/Root';
 import InputCredentials from '../Screens/InputCredentials/Root';
+import SubmitPage from '../Screens/SubmitPage/Root';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ScreenNames from '../Screens/Names';
@@ -58,6 +62,23 @@ export default function ScreenNavigator() {
 						</Stack.Screen>
 					);
 				})}
+
+				<Stack.Screen
+					name={ScreenNames.SetUp}
+					options={{ title: '' }}
+					component={SetUp}
+					
+				/>
+				<Stack.Screen
+					name={ScreenNames.SetUpSuccessScreen}
+					options={{ title: '' }}
+					component={SetUpSuccess}
+				/>
+				<Stack.Screen
+					name={ScreenNames.SetUpFailureScreen}
+					options={{ title: '' }}
+					component={SetUpFailure}
+				/>
 				<Stack.Screen
 					name={ScreenNames.TransactionScreen}
 					options={{
@@ -87,6 +108,27 @@ export default function ScreenNavigator() {
 					name={ScreenNames.TransactionFailureScreen}
 					options={{ title: '' }}
 					component={TransactionFailure}
+				/>
+				<Stack.Screen
+					name={ScreenNames.SubmitPageScreen}
+					options={{ title: 'Back', 
+					headerTitleStyle: {
+						fontWeight: 'bold',
+					}, 
+					gestureDirection: 'horizontal-inverted',
+					headerRight: () => (
+						<Text
+							style={{
+								color: '#FFFF',
+								margin: 20,
+								fontSize: 18,
+								fontStyle: 'italic',
+							}}
+						>
+							Step 6 out of 6
+						</Text>
+					), }}
+					component={SubmitPage}
 				/>
 			</Stack.Navigator>
 		</NavigationContainer>
