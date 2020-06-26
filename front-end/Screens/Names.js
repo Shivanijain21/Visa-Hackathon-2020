@@ -10,4 +10,5 @@ export default ScreeNames = {
 	InputCredentialsStep3: 'EnterCertificate',
 	InputCredentialsStep4: 'EnterKey',
 	InputCredentialsStep5: 'EnterClientCertificate',
+	SubmitPageScreen: 'SubmitPage',
 };

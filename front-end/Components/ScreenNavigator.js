@@ -6,6 +6,7 @@ import TransactionSuccess from '../Screens/TransactionSuccess/Root';
 import SetUp from '../Screens/SetUp/Root';
 import SetUpSuccess from '../Screens/SetUpSuccess/Root';
 import SetUpFailure from '../Screens/SetUpFailure/Root';
+import SubmitPage from '../Screens/SubmitPage/Root';
 import TransactionFailure from '../Screens/TransactionFail/Root';
 import InputCredentials from '../Screens/InputCredentials/Root';
 import { NavigationContainer } from '@react-navigation/native';
@@ -72,6 +73,10 @@ export default function ScreenNavigator() {
 				<Stack.Screen
 					name={ScreenNames.SetUpFailureScreen}
 					component={SetUpFailure}
+				/>
+				<Stack.Screen
+					name={ScreenNames.SubmitPageScreen}
+					component={SubmitPage}
 				/>
 				<Stack.Screen
 					name={ScreenNames.TransactionScreen}

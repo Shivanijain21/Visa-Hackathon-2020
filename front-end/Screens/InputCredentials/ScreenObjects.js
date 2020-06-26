@@ -29,6 +29,6 @@ export default InputCredentialScreens = [
 		Name: ScreenNames.InputCredentialsStep5,
 		Credential: 'Client Cert. File',
 		step: '5',
-		NextPage: ScreenNames.TransactionScreen,
+		NextPage: ScreenNames.SubmitPageScreen,
 	},
 ];

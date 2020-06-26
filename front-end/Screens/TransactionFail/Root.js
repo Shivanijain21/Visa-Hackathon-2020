@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import TryAgainButton from './TryAgainButton';
-import HomeButton from './HomeButton';
+//import HomeButton from './HomeButton';
 import { Button } from 'react-native-paper';
 
 const styles = StyleSheet.create({
@@ -58,7 +58,7 @@ export default function TransactionFail({ navigation, route }) {
 			</View>
 			<View style={{flex: 1}}>
 				<TryAgainButton/>
-				<HomeButton/>
+				{/* <HomeButton/> */}
 			</View>
 		</View>
 	);
