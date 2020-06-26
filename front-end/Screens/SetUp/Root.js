@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from 'react-native-paper';
 import { Text, View, StyleSheet } from 'react-native';
-// import Icon from '@mdi/react';
-// import { mdiCheckCircle } from '@mdi/js';
-
+import ScreeenNames from '../Names';
 const styles = StyleSheet.create({
 	Container: {
 		flex: 1,
@@ -34,22 +32,22 @@ const styles = StyleSheet.create({
 	},
 	Text: {
 		fontSize: 28,
-    },
+	},
 });
 
 export default function SetUp({ navigation: { navigate } }) {
 	return (
-        <View style={styles.Container}>
-            <Text style={styles.WelcomeText}>WELCOME!</Text>
+		<View style={styles.Container}>
+			<Text style={styles.WelcomeText}>WELCOME!</Text>
 			<Text style={styles.BodyText}>Insert slogan here</Text>
 			<Button
 				contentStyle={styles.Button}
 				labelStyle={styles.Text}
 				mode='contained'
-				onPress={() => console.log('Pressed')}
+				onPress={() => navigate(ScreeenNames.InputCredentialsStep1)}
 			>
 				Click to Setup
 			</Button>
-        </View>	
+		</View>
 	);
 }

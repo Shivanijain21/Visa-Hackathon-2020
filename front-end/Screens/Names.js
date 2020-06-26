@@ -1,7 +1,7 @@
 export default ScreeNames = {
 	SetUp: 'SetUp',
-	SetUpSuccessScreen: 'SetUp Success',
-	SetUpFailureScreen: 'SetUp Failure',
+	SetUpSuccessScreen: 'SetUpSuccess',
+	SetUpFailureScreen: 'SetUpFailure',
 	TransactionScreen: 'Transaction',
 	TransactionSuccessScreen: 'TransactionSuccess',
 	TransactionFailureScreen: 'TransactionFailureScreen',

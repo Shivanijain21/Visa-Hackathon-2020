@@ -26,6 +26,11 @@ export default function ScreenNavigator() {
 					headerTintColor: '#fff',
 				}}
 			>
+				<Stack.Screen
+					name={ScreenNames.SetUp}
+					options={{ title: '' }}
+					component={SetUp}
+				/>
 				{/* Render Input Credential Screens */}
 				{InputCredentialScreens.map((page, index) => {
 					return (
@@ -62,12 +67,28 @@ export default function ScreenNavigator() {
 						</Stack.Screen>
 					);
 				})}
-
 				<Stack.Screen
-					name={ScreenNames.SetUp}
-					options={{ title: '' }}
-					component={SetUp}
-					
+					name={ScreenNames.SubmitPageScreen}
+					options={{
+						title: 'Back',
+						headerTitleStyle: {
+							fontWeight: 'bold',
+						},
+						gestureDirection: 'horizontal-inverted',
+						headerRight: () => (
+							<Text
+								style={{
+									color: '#FFFF',
+									margin: 20,
+									fontSize: 18,
+									fontStyle: 'italic',
+								}}
+							>
+								Step 6 out of 6
+							</Text>
+						),
+					}}
+					component={SubmitPage}
 				/>
 				<Stack.Screen
 					name={ScreenNames.SetUpSuccessScreen}
@@ -108,27 +129,6 @@ export default function ScreenNavigator() {
 					name={ScreenNames.TransactionFailureScreen}
 					options={{ title: '' }}
 					component={TransactionFailure}
-				/>
-				<Stack.Screen
-					name={ScreenNames.SubmitPageScreen}
-					options={{ title: 'Back', 
-					headerTitleStyle: {
-						fontWeight: 'bold',
-					}, 
-					gestureDirection: 'horizontal-inverted',
-					headerRight: () => (
-						<Text
-							style={{
-								color: '#FFFF',
-								margin: 20,
-								fontSize: 18,
-								fontStyle: 'italic',
-							}}
-						>
-							Step 6 out of 6
-						</Text>
-					), }}
-					component={SubmitPage}
 				/>
 			</Stack.Navigator>
 		</NavigationContainer>
