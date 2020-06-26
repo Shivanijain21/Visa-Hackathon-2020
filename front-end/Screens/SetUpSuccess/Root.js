@@ -9,16 +9,12 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
-		paddingTop: 20,
-		paddingLeft: 50,
-        paddingRight: 50,
 	},
 	SuccessText: {
 		color: '#FDBB0A',
 		fontWeight: 'bold',
-		fontSize: 36,
-		paddingTop: 10,
-		flex: .5,
+		fontSize: 40,
+		marginBottom: 90,
 	},
 	BodyText: {
 		fontSize: 24,
@@ -26,33 +22,20 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		paddingBottom: 10,
 	},
-	Circle: {
-		flex: .11,
-        paddingBottom: 10,
-        paddingLeft: 17,
-        paddingTop: 10,
-		flexDirection: 'column',
-		alignItems: 'center',
-        justifyContent: 'center',
-	},
 });
 
-export default function SetUpSuccess({ navigation: {navigate } }) {
+export default function SetUpSuccess({ navigation: { navigate } }) {
 	return (
 		<View style={styles.Container}>
-			<View>
-				 <Button icon="check-circle" labelStyle={{
-                    color: 'green',
-                    margin: 20,
-                    fontSize: 100,
-                }}/>
-			</View>
-
+			<Button
+				icon='check-circle'
+				labelStyle={{
+					color: '#08CA1B',
+					fontSize: 150,
+				}}
+			/>
 			<Text style={styles.SuccessText}>Setup Complete!</Text>
-
-			<View>
-				<ContinueButton navigate={navigate}/>
-			</View>
+			<ContinueButton navigate={navigate} />
 		</View>
 	);
 }

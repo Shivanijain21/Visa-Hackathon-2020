@@ -9,16 +9,11 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
-		paddingTop: 20,
-		paddingLeft: 50,
-        paddingRight: 50,
 	},
-    ErrorText: {
+	ErrorText: {
 		color: 'red',
 		fontWeight: 'bold',
-		fontSize: 36,
-		paddingTop: 20,
-		flex: .45,
+		fontSize: 40,
 	},
 	BodyText: {
 		fontSize: 24,
@@ -26,35 +21,25 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		paddingBottom: 50,
 	},
-	Alert: {
-		flex: .11,
-        paddingBottom: 15,
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
 });
 
-export default function SetUpFailure({ navigation: {navigate } }) {
+export default function SetUpFailure({ navigation: { navigate } }) {
 	return (
 		<View style={styles.Container}>
-            <Text style={styles.ErrorText}>ERROR!</Text>
-
-			<Button icon="alert" labelStyle={{
-				color: 'red',
-				margin: 20,
-				fontSize: 100,
-            }}/>
-
-            <View style={{ paddingBottom: 20 }}>
-                <Text style={styles.BodyText}>  
-                    Invalid credentials. {"\n"}
-                    Please try again.
-                </Text>
-            </View>
-			<View>
-				<TryAgainButton navigate={navigate}/>
-			</View>
+			<Text style={styles.ErrorText}>ERROR!</Text>
+			<Button
+				icon='alert'
+				labelStyle={{
+					color: 'red',
+					margin: 20,
+					fontSize: 150,
+				}}
+			/>
+			<Text style={styles.BodyText}>
+				Invalid credentials. {'\n'}
+				Please try again.
+			</Text>
+			<TryAgainButton navigate={navigate} />
 		</View>
 	);
 }

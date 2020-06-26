@@ -5,18 +5,17 @@ import ScreenNames from '../Names';
 
 const styles = StyleSheet.create({
 	Button: {
-        height: 68,
-        backgroundColor: '#FDBB0A',
+		height: 68,
+		backgroundColor: '#FDBB0A',
 	},
 	Text: {
 		fontSize: 28,
-    },
-    Container:{
-    }
+	},
+	Container: {},
 });
 
-export default function ({navigate}) {
-    const Submit = () => {
+export default function ({ navigate }) {
+	const Submit = () => {
 		navigate(ScreenNames.SetUpSuccessScreen);
 	};
 	return (

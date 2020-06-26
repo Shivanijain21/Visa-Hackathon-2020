@@ -10,28 +10,26 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
-		paddingTop: 20,
-		paddingLeft: 50,
-		paddingRight: 50,
+		padding: 10,
 	},
 	ErrorText: {
 		color: 'red',
 		fontWeight: 'bold',
 		fontSize: 36,
+		textAlign: 'center',
 	},
 	BodyText: {
 		fontSize: 24,
 		color: '#1A1F71',
 		textAlign: 'center',
-		paddingBottom: 10,
 	},
 });
 
 export default function TransactionFail({ navigation, route }) {
 	return (
 		<View style={styles.Container}>
-			<Text style={styles.ErrorText}>ERROR!</Text>
-			<View>
+			<View style={{ flex: 0.6 }}>
+				<Text style={styles.ErrorText}>ERROR!</Text>
 				<Button
 					icon='alert'
 					labelStyle={{
@@ -39,14 +37,12 @@ export default function TransactionFail({ navigation, route }) {
 						fontSize: 150,
 					}}
 				/>
-			</View>
-			<View>
 				<Text style={styles.BodyText}>
 					Transaction unsuccessful.{'\n'}
 					Please try again.
 				</Text>
 			</View>
-			<View>
+			<View style={{ flex: 0.2 }}>
 				<TryAgainButton />
 				<HomeButton />
 			</View>

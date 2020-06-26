@@ -9,18 +9,18 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
-		paddingLeft: 50,
-		paddingRight: 50,
 	},
 	SuccessText: {
 		color: '#FDBB0A',
 		fontWeight: 'bold',
 		fontSize: 50,
+		textAlign: 'center',
 	},
 	BodyText: {
 		fontSize: 24,
 		color: '#1A1F71',
 		textAlign: 'center',
+		paddingHorizontal: 50,
 		paddingBottom: 10,
 	},
 });
@@ -28,9 +28,8 @@ const styles = StyleSheet.create({
 export default function TransactionSuccess({ navigation, route }) {
 	return (
 		<View style={styles.Container}>
-			<Text style={styles.SuccessText}>SUCCESS!</Text>
-
-			<View>
+			<View style={{ flex: 0.6 }}>
+				<Text style={styles.SuccessText}>SUCCESS!</Text>
 				<Button
 					icon='check-circle'
 					labelStyle={{
@@ -38,15 +37,11 @@ export default function TransactionSuccess({ navigation, route }) {
 						fontSize: 150,
 					}}
 				/>
-			</View>
-
-			<View style={{ paddingBottom: 60 }}>
 				<Text style={styles.BodyText}>
 					Transaction of $ {route.params.amount} was processed successfully.
 				</Text>
 			</View>
-
-			<View>
+			<View style={{ flex: 0.2 }}>
 				<HomeButton />
 			</View>
 		</View>

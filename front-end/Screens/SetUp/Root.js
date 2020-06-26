@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'react-native-paper';
 import { Text, View, StyleSheet } from 'react-native';
-import ScreeenNames from '../Names';
+import ScreenNames from '../Names';
 const styles = StyleSheet.create({
 	Container: {
 		flex: 1,
@@ -44,9 +44,9 @@ export default function SetUp({ navigation: { navigate } }) {
 				contentStyle={styles.Button}
 				labelStyle={styles.Text}
 				mode='contained'
-				onPress={() => navigate(ScreeenNames.InputCredentialsStep1)}
+				onPress={() => navigate(ScreenNames.InputCredentialsStep1)}
 			>
-				Click to Setup
+				Start Set Up
 			</Button>
 		</View>
 	);

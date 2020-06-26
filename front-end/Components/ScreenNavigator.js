@@ -7,7 +7,7 @@ import SetUp from '../Screens/SetUp/Root';
 import SetUpSuccess from '../Screens/SetUpSuccess/Root';
 import SetUpFailure from '../Screens/SetUpFailure/Root';
 import TransactionFailure from '../Screens/TransactionFail/Root';
-import InputCredentials from '../Screens/InputCredentials/Root';
+import InputCredential from '../Screens/InputCredentials/InputCrendential';
 import SubmitPage from '../Screens/SubmitPage/Root';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -51,16 +51,17 @@ export default function ScreenNavigator() {
 											fontStyle: 'italic',
 										}}
 									>
-										Step {page.step} out of 6
+										Step {page.step} out of 4
 									</Text>
 								),
 							}}
 						>
 							{(props) => (
-								<InputCredentials
+								<InputCredential
 									key={index}
 									{...props}
 									credentialName={page.Credential}
+									credentialType={page.Type}
 									nextPageName={page.NextPage}
 								/>
 							)}
@@ -84,7 +85,7 @@ export default function ScreenNavigator() {
 									fontStyle: 'italic',
 								}}
 							>
-								Step 6 out of 6
+								Step 4 out of 4
 							</Text>
 						),
 					}}
