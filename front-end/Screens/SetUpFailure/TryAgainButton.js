@@ -5,21 +5,19 @@ import ScreenNames from '../Names';
 
 const styles = StyleSheet.create({
 	Button: {
-        height: 68,
+		height: 68,
 	},
 	Text: {
 		fontSize: 28,
-    },
-    Container:{
-    }
+	},
 });
 
-export default function ({navigate}) {
-    const TryAgain = () => {
+export default function ({ navigate }) {
+	const TryAgain = () => {
 		navigate(ScreenNames.SetUp);
 	};
 	return (
-		<View style={styles.Container}>
+		<View>
 			<Button
 				contentStyle={styles.Button}
 				labelStyle={styles.Text}

@@ -41,7 +41,7 @@ export default function ({ amount, setBusy, navigate }) {
 		setBusy(true);
 		setTimeout(() => {
 			setBusy(false);
-			navigate(ScreenNames.TransactionFailureScreen, { amount });
+			navigate(ScreenNames.TransactionSuccessScreen, { amount });
 		}, 3000);
 	};
 
