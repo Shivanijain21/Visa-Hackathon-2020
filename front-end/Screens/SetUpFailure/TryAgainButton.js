@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'react-native-paper';
 import { StyleSheet, View } from 'react-native';
+import ScreenNames from '../Names';
 
 const styles = StyleSheet.create({
 	Button: {
@@ -11,16 +12,19 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default function () {
+export default function ({ navigate }) {
+	const TryAgain = () => {
+		navigate(ScreenNames.SetUp);
+	};
 	return (
 		<View>
 			<Button
 				contentStyle={styles.Button}
 				labelStyle={styles.Text}
 				mode='contained'
-				onPress={() => console.log('Pressed')}
+				onPress={() => TryAgain()}
 			>
-				Return Home
+				Try Again
 			</Button>
 		</View>
 	);
