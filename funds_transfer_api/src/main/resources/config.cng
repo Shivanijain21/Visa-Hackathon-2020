@@ -1,6 +1,6 @@
 userName =61EKU856ZDR6P2QD158K21XSUzEdleDq1oCkG6qSntArgA6CE
-password =I29C0freViX2C0
-keyStorePath =myProject_keyAndCertBundle.jks
+password =STI5QzBmcmVWaVgyQzA=
+keyStorePath =./myProject_keyAndCertBundle.jks
 keyStorePassword =123456
 privateKeyPassword =
 proxyHostName =
