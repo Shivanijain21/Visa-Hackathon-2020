@@ -4,13 +4,15 @@ import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TransactionScreen from './Transaction/Root';
 import HomeScreen from './Home/Root';
-import ProfileScreen from './Profile/Root';
 import ScreenNames from './Names';
 const Tab = createBottomTabNavigator();
 
 const Styles = StyleSheet.create({
-	IconSize: {
-		fontSize: 100,
+	font: {
+		fontSize: 30,
+	},
+	margin: {
+		marginTop: 15,
 	},
 });
 
@@ -18,12 +20,9 @@ export default function MainScreen() {
 	return (
 		<Tab.Navigator
 			tabBarOptions={{
-				style: {
-					backgroundColor: '#262D9B',
-				},
 				activeTintColor: '#FDBB0A',
-				iconStyle: {
-					fontSize: 100,
+				tabStyle: {
+					backgroundColor: '#262D9B',
 				},
 			}}
 		>
@@ -33,7 +32,13 @@ export default function MainScreen() {
 				options={{
 					title: '',
 					tabBarIcon: ({ color, size }) => (
-						<Button icon='coin' color={color} size={size} />
+						<Button
+							icon='coin'
+							color={color}
+							size={size}
+							labelStyle={Styles.font}
+							contentStyle={Styles.margin}
+						/>
 					),
 				}}
 			/>
@@ -43,17 +48,13 @@ export default function MainScreen() {
 				options={{
 					title: '',
 					tabBarIcon: ({ color, size }) => (
-						<Button icon='home' color={color} size={size}></Button>
-					),
-				}}
-			/>
-			<Tab.Screen
-				name={ScreenNames.ProfileScreen}
-				component={ProfileScreen}
-				options={{
-					title: '',
-					tabBarIcon: ({ color, size }) => (
-						<Button icon='account-circle' color={color} size={size} />
+						<Button
+							icon='home'
+							color={color}
+							size={size}
+							labelStyle={Styles.font}
+							contentStyle={Styles.margin}
+						/>
 					),
 				}}
 			/>
