@@ -5,15 +5,19 @@ import com.visa.developer.sample.funds_transfer_api.ApiClient;
 import com.visa.developer.sample.funds_transfer_api.Config;
 import com.visa.developer.sample.funds_transfer_api.api.FundsTransferApi;
 import com.visa.developer.sample.funds_transfer_api.model.FundTransferRequest;
+import com.visa.developer.sample.funds_transfer_api.model.FundTransferResponse;
 import com.visa.developer.sample.funds_transfer_api.model.PullfundspostPayload;
 import com.visa.developer.sample.funds_transfer_api.model.PullfundstransactionsgetResponse;
 import com.visa.developer.sample.funds_transfer_api.service.FundTransferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.client.RestClientResponseException;
 import org.threeten.bp.LocalDateTime;
 import org.threeten.bp.ZoneId;
 import org.threeten.bp.ZonedDateTime;
@@ -31,11 +35,13 @@ public class RestController {
     @Autowired
     FundTransferService fundTransferService;
 
+    static final String message = "transaction was successful";
+
     private FundsTransferApi api = null;
 
 
     @RequestMapping(value = "/fund", method = RequestMethod.POST)
-    boolean pullFunds(@RequestBody FundTransferRequest fundTransferRequest) throws IOException {
+    ResponseEntity<FundTransferResponse> pullFunds(@RequestBody FundTransferRequest fundTransferRequest) throws IOException {
         return getpullfundstransactions(fundTransferRequest.getToken());
     }
 
@@ -73,10 +79,11 @@ public class RestController {
         api = new FundsTransferApi(apiClient);
     }
 
-    public boolean getpullfundstransactions(String token) throws IOException {
+    public ResponseEntity<FundTransferResponse> getpullfundstransactions(String token) throws IOException {
         String jsonPayload = transformPayload("{\"localTransactionDateTime\": \"2016-11-16T23:33:06\", \"businessApplicationId\": \"AA\", \"cpsAuthorizationCharacteristicsIndicator\": \"Y\", \"senderCardExpiryDate\": \"2015-10\", \"amount\": \"124.02\", \"acquirerCountryCode\": \"840\", \"retrievalReferenceNumber\": \"330000550000\", \"cardAcceptor\": {\"idCode\": \"ABCD1234ABCD123\", \"address\": {\"county\": \"081\", \"country\": \"USA\", \"state\": \"CA\", \"zipCode\": \"94404\"}, \"terminalId\": \"ABCD1234\", \"name\": \"Visa Inc. USA-Foster City\"}, \"acquiringBin\": \"408999\", \"systemsTraceAuditNumber\": \"451001\", \"nationalReimbursementFee\": \"11.22\", \"senderCurrencyCode\": \"USD\", \"cavv\": \"0700100038238906000013405823891061668252\", \"foreignExchangeFeeTransaction\": \"11.99\", \"addressVerificationData\": {\"postalCode\": \"12345\", \"street\": \"XYZ St\"}, \"senderPrimaryAccountNumber\": \"4895142232120006\", \"surcharge\": \"11.99\"}");
         ObjectMapper mapper = new ObjectMapper();
-
+        FundTransferResponse
+                fundTransferResponse = new FundTransferResponse();
         try {
             PullfundspostPayload body = mapper.readValue(jsonPayload, PullfundspostPayload.class);
             body.setSenderPrimaryAccountNumber(token);
@@ -85,11 +92,16 @@ public class RestController {
             }, String.class, true);
 
             PullfundstransactionsgetResponse response = api.getpullfundstransactions(statusIdentifier);
-        } catch (Exception ex) {
+        } catch (RestClientResponseException ex) {
             ex.getStackTrace();
-            return false;
+
+            fundTransferResponse.setCode(ex.getRawStatusCode());
+            fundTransferResponse.setMessage(ex.getStatusText());
+            return new ResponseEntity(fundTransferResponse, HttpStatus.valueOf(ex.getRawStatusCode()));
         }
-        return true;
+        fundTransferResponse.setMessage(message);
+        fundTransferResponse.setCode(HttpStatus.OK.value());
+        return new ResponseEntity(fundTransferResponse, HttpStatus.OK);
     }
 
     private String transformPayload(String payload) {
