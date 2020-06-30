@@ -2,6 +2,7 @@ import React, { isValidElement } from 'react';
 import { Button } from 'react-native-paper';
 import { StyleSheet, View } from 'react-native';
 import ScreenNames from '../Names';
+import axios from "axios";
 
 const styles = StyleSheet.create({
 	Container: {
@@ -35,6 +36,13 @@ export default function ({ amount, setBusy, navigate }) {
 
 	const submitTransaction = () => {
 		// Here we will call our backend service which will then call VISA DIRECT API
+		console.log("**********************in button function************************")
+
+		axios.get('http://10.0.2.2:3000/updateRecords').
+			then((res) => {
+				console.log("came from backend");
+				console.log(res);
+			});
 		console.log('Submitting Transaction ...');
 
 		// Set busy state for 3 seconds
