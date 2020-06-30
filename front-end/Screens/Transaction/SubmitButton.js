@@ -1,39 +1,52 @@
 import React, { useState } from 'react';
-import { Button } from 'react-native-paper';
+import { Button, Surface } from 'react-native-paper';
 import { StyleSheet, View, ActivityIndicator, Text } from 'react-native';
 import ScreenNames from '../Names';
-import { Modal, Portal } from 'react-native-paper';
+import { Dialog, Portal } from 'react-native-paper';
 
 const styles = StyleSheet.create({
 	Container: {
-		height: 75,
+		height: 80,
 		color: '#262D9B',
 	},
 	Text: {
 		fontSize: 30,
 	},
-	modalContainer: {
-		alignItems: 'center',
-		justifyContent: 'center',
+	DialogContainer: {
+		backgroundColor: '#262D9B',
+	},
+	DialogTitle: {
+		color: '#E5E5E5',
+		marginTop: 30,
+		fontSize: 25,
+		fontWeight: '600',
+		textAlign: 'center',
 	},
 });
 
 export default function ({ amount, navigate, setAmount }) {
 	// Transaction states
-	const startTransactionState = {
-		state: true,
-		waitingText: "Waiting for customer's token ...",
-	};
+	const tokenWaitingText = 'Waiting for customer ...';
+	const submitWaitingText = 'Submitting transaction ...';
 
-	const sumbitTransactionState = {
-		state: false,
-		waitingText: 'Submitting transaction ...',
-	};
-
-	const [transactionState, setTransactionState] = useState({
-		...startTransactionState,
-	});
+	const [waitingText, setWaitingText] = useState(tokenWaitingText);
 	const [busy, setBusy] = useState(false);
+
+	const submitTransaction = () => {
+		// ***********************************************************************
+		// ENTER AXIOS CALL TO OUR BACKEND SERVICE WHICH WILL CALL VISA DIRECT API
+		// ***********************************************************************
+		setTimeout(() => {
+			// Turn off spinner
+			setBusy(false);
+			// Clear the amount
+			setAmount('');
+			// Change waiting text for next transaction
+			setWaitingText(tokenWaitingText);
+			// Navigate to the success page
+			navigate(ScreenNames.TransactionSuccessScreen, { amount });
+		}, 3000);
+	};
 
 	const startTransaction = () => {
 		// *****************************************************
@@ -41,29 +54,9 @@ export default function ({ amount, navigate, setAmount }) {
 		// *****************************************************
 		setBusy(true);
 		setTimeout(() => {
-			setBusy(false);
-			// Change transaction state to submit payment
-			setTransactionState({
-				...sumbitTransactionState,
-			});
-		}, 3000);
-	};
-
-	const submitTransaction = () => {
-		// ***********************************************************************
-		// ENTER AXIOS CALL TO OUR BACKEND SERVICE WHICH WILL CALL VISA DIRECT API
-		// ***********************************************************************
-		setBusy(true);
-		setTimeout(() => {
-			setBusy(false);
-			// Clear the amount
-			setAmount('');
-			// Change transaction state back to start transaction
-			setTransactionState({
-				...startTransactionState,
-			});
-			// Navigate to the success page
-			navigate(ScreenNames.TransactionSuccessScreen, { amount });
+			// Change waiting text to submit payment
+			setWaitingText(submitWaitingText);
+			submitTransaction();
 		}, 3000);
 	};
 
@@ -88,45 +81,30 @@ export default function ({ amount, navigate, setAmount }) {
 
 	return (
 		<View style={{ flex: 1 }}>
-			{transactionState.state ? (
-				<Button
-					contentStyle={styles.Container}
-					labelStyle={styles.Text}
-					mode='contained'
-					onPress={() => startTransaction()}
-					disabled={!isAmountValid()}
-				>
-					START TRANSACTION
-				</Button>
-			) : (
-				<Button
-					contentStyle={styles.Container}
-					labelStyle={styles.Text}
-					mode='contained'
-					onPress={() => submitTransaction()}
-					disabled={!isAmountValid()}
-				>
-					SUBMIT PAYMENT
-				</Button>
-			)}
+			<Button
+				contentStyle={styles.Container}
+				labelStyle={styles.Text}
+				mode='contained'
+				onPress={() => startTransaction()}
+				disabled={!isAmountValid()}
+			>
+				START TRANSACTION
+			</Button>
 			<Portal>
-				<Modal
+				<Dialog
 					visible={busy}
 					dismissable={false}
-					contentContainerStyle={styles.modalContainer}
+					style={styles.DialogContainer}
 				>
-					<ActivityIndicator size={170} color='#262D9B' />
-					<Text
-						style={{
-							color: '#262D9B',
-							marginTop: 30,
-							fontSize: 25,
-							fontWeight: 'bold',
-						}}
-					>
-						{transactionState.waitingText}
-					</Text>
-				</Modal>
+					<View>
+						<Dialog.Title style={styles.DialogTitle}>
+							{waitingText}
+						</Dialog.Title>
+						<Dialog.Content>
+							<ActivityIndicator size={170} color='#E5E5E5' />
+						</Dialog.Content>
+					</View>
+				</Dialog>
 			</Portal>
 		</View>
 	);
