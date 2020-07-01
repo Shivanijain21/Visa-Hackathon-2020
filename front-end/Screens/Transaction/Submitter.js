@@ -4,6 +4,21 @@ import { StyleSheet, View, ActivityIndicator, Text } from 'react-native';
 import ScreenNames from '../Names';
 import { Dialog, Portal } from 'react-native-paper';
 
+const monthNames = [
+	'January',
+	'February',
+	'March',
+	'April',
+	'May',
+	'June',
+	'July',
+	'August',
+	'September',
+	'October',
+	'November',
+	'December',
+];
+
 const styles = StyleSheet.create({
 	Container: {
 		height: 80,
@@ -24,7 +39,13 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default function ({ amount, navigate, setAmount }) {
+export default function ({
+	amount,
+	navigate,
+	setAmount,
+	transactions,
+	setTransactions,
+}) {
 	// Transaction states
 	const tokenWaitingText = 'Waiting for customer ...';
 	const submitWaitingText = 'Submitting transaction ...';
@@ -43,6 +64,16 @@ export default function ({ amount, navigate, setAmount }) {
 			setAmount('');
 			// Change waiting text for next transaction
 			setWaitingText(tokenWaitingText);
+			// Adds a new transaction to the transaction history
+			const dateNow = new Date();
+			setTransactions([
+				{
+					Name: 'Johan Guzman',
+					Amount: parseFloat(amount),
+					Date: `${monthNames[dateNow.getMonth()]} ${dateNow.getDate()}`,
+				},
+				...transactions,
+			]);
 			// Navigate to the success page
 			navigate(ScreenNames.TransactionSuccessScreen, { amount });
 		}, 3000);

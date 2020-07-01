@@ -25,7 +25,10 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default function TransactionSuccess({ navigation, route }) {
+export default function TransactionSuccess({
+	navigation: { navigate },
+	route,
+}) {
 	return (
 		<View style={styles.Container}>
 			<View style={{ flex: 0.6 }}>
@@ -38,11 +41,11 @@ export default function TransactionSuccess({ navigation, route }) {
 					}}
 				/>
 				<Text style={styles.BodyText}>
-					Transaction of $ {route.params.amount} was processed successfully.
+					Transaction of ${route.params.amount} was processed successfully.
 				</Text>
 			</View>
 			<View style={{ flex: 0.2 }}>
-				<HomeButton />
+				<HomeButton navigate={navigate}/>
 			</View>
 		</View>
 	);

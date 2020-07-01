@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TransactionScreen from './Transaction/Root';
-import HomeScreen from './Home/Root';
+import TransactionHistoryScreen from './TransactionHistory/Root';
 import ScreenNames from './Names';
 const Tab = createBottomTabNavigator();
 
@@ -17,6 +17,38 @@ const Styles = StyleSheet.create({
 });
 
 export default function MainScreen() {
+	const [transactions, setTransactions] = useState([
+		{
+			Name: 'Chris Jung',
+			Amount: 250.0,
+			Date: 'June 28',
+		},
+		{
+			Name: 'Johan Guzman',
+			Amount: 35.67,
+			Date: 'May 12',
+		},
+		{
+			Name: 'Latifat Ozoya',
+			Amount: 10.99,
+			Date: 'May 05',
+		},
+		{
+			Name: 'Mikhail Husyev',
+			Amount: 15.99,
+			Date: 'April 23',
+		},
+		{
+			Name: 'Saurabh Anand',
+			Amount: 50.5,
+			Date: 'March 06',
+		},
+		{
+			Name: 'Chris Jung',
+			Amount: 470.5,
+			Date: 'March 6',
+		},
+	]);
 	return (
 		<Tab.Navigator
 			tabBarOptions={{
@@ -28,7 +60,6 @@ export default function MainScreen() {
 		>
 			<Tab.Screen
 				name={ScreenNames.TransactionScreen}
-				component={TransactionScreen}
 				options={{
 					title: '',
 					tabBarIcon: ({ color, size }) => (
@@ -41,15 +72,22 @@ export default function MainScreen() {
 						/>
 					),
 				}}
-			/>
+			>
+				{(props) => (
+					<TransactionScreen
+						{...props}
+						transactions={transactions}
+						setTransactions={setTransactions}
+					/>
+				)}
+			</Tab.Screen>
 			<Tab.Screen
-				name={ScreenNames.HomeScreen}
-				component={HomeScreen}
+				name={ScreenNames.TransactionHistoryScreen}
 				options={{
 					title: '',
 					tabBarIcon: ({ color, size }) => (
 						<Button
-							icon='home'
+							icon='history'
 							color={color}
 							size={size}
 							labelStyle={Styles.font}
@@ -57,7 +95,11 @@ export default function MainScreen() {
 						/>
 					),
 				}}
-			/>
+			>
+				{(props) => (
+					<TransactionHistoryScreen {...props} transactions={transactions} />
+				)}
+			</Tab.Screen>
 		</Tab.Navigator>
 	);
 }
