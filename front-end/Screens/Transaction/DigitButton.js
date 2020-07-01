@@ -20,8 +20,10 @@ const styles = StyleSheet.create({
 
 export default function ({ digit, amount, setAmount }) {
 	const addDigit = () => {
+		if (digit === '0' && !amount) {
+			return;
+		}
 		if (digit === '.' && (!amount || amount.includes('.'))) {
-			console.log('Invalid input');
 			return;
 		}
 
@@ -33,12 +35,10 @@ export default function ({ digit, amount, setAmount }) {
 		}
 		if (wholePart && wholePart.length === 4) {
 			if (digit !== '.' && !amount.includes('.')) {
-				console.log('Max whole part reached');
 				return;
 			}
 		}
 		if (decimalPart && decimalPart.length === 2) {
-			console.log('Max decimal part reached');
 			return;
 		}
 		if (digit !== '<') {
