@@ -1,20 +1,28 @@
 import SInfo from "react-native-sensitive-info";
-import React from "react";
+import { Component } from "react";
 
-class SensitiveStorage extends React.Component {
-  setSensitiveData(key, value) {
-    SInfo.setItem(key, value, {
-      sharedPreferencesName: "mySharedPrefs",
-      keychainService: "myKeychain",
-    });
-  }
+const setSensitiveStorage = async () => {
+  SInfo.setItem("key1", "value1", {
+    sharedPreferencesName: "mySharedPrefs",
+    keychainService: "myKechain",
+  });
+};
 
-  getSensitiveData(key, value) {
-    SInfo.setItem(key, value, {
-      sharedPreferencesName: "mySharedPrefs",
-      keychainService: "myKeychain",
-    });
-  }
+class SensitiveStorage extends Component(){
+    setSensitiveData(key, value) {
+        SInfo.setItem(key, value, {
+            sharedPreferencesName: "mySharedPrefs",
+            keychainService: "myKeychain",
+          }); 
+    }
+
+    getSensitiveData(key, value){
+        SInfo.setItem(key, value, {
+            sharedPreferencesName: "mySharedPrefs",
+            keychainService: "myKeychain"
+        })
+    }
+
 }
 
-export default SensitiveStorage;
+export default function SensitiveStorage();
