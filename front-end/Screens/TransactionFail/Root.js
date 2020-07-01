@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import TryAgainButton from './TryAgainButton';
-import HomeButton from '../TransactionSuccess/HomeButton';
 import { Button } from 'react-native-paper';
 
 const styles = StyleSheet.create({
@@ -25,7 +24,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default function TransactionFail({ navigation, route }) {
+export default function TransactionFail({ navigation: { navigate }, route }) {
 	return (
 		<View style={styles.Container}>
 			<View style={{ flex: 0.6 }}>
@@ -43,8 +42,7 @@ export default function TransactionFail({ navigation, route }) {
 				</Text>
 			</View>
 			<View style={{ flex: 0.2 }}>
-				<TryAgainButton />
-				<HomeButton />
+				<TryAgainButton navigate={navigate} />
 			</View>
 		</View>
 	);

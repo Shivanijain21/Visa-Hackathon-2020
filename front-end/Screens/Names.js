@@ -11,7 +11,5 @@ export default ScreeNames = {
 	TransactionHistoryScreen: 'TransactionHistoryScreen',
 	ProfileScreen: 'ProfileScreen',
 	MainScreen: 'MainScreen',
-	// InputCredentialsStep4: 'EnterKey',
-	// InputCredentialsStep5: 'EnterClientCertificate',
 	SubmitPageScreen: 'SubmitPage',
 };

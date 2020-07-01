@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { useState } from 'react';
-import { View, StyleSheet, ActivityIndicator } from 'react-native';
+import { View } from 'react-native';
 import AmountDisplayer from './AmountDisplayer';
 import Submitter from './Submitter';
 import KeyPad from './KeyPad';

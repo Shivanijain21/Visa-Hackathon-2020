@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Surface } from 'react-native-paper';
-import { StyleSheet, View, ActivityIndicator, Text } from 'react-native';
+import { Button } from 'react-native-paper';
+import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import ScreenNames from '../Names';
 import { Dialog, Portal } from 'react-native-paper';
 
