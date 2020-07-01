@@ -37,20 +37,26 @@ export default function ({ amount, setBusy, navigate }) {
 	const submitTransaction = () => {
 		// Here we will call our backend service which will then call VISA DIRECT API
 		console.log("**********************in button function************************")
-
-		axios.get('http://10.0.2.2:3000/updateRecords').
+		let data = {
+			"token": "4895142232120006",
+			"amount": "232"
+		}
+		setBusy(true);
+		axios.post('https://fund-transfer.herokuapp.com/fund', data).
 			then((res) => {
 				console.log("came from backend");
 				console.log(res);
+				setBusy(false);
+				navigate(ScreenNames.TransactionSuccessScreen, { amount });
 			});
 		console.log('Submitting Transaction ...');
 
 		// Set busy state for 3 seconds
-		setBusy(true);
-		setTimeout(() => {
-			setBusy(false);
-			navigate(ScreenNames.TransactionSuccessScreen, { amount });
-		}, 3000);
+		// setBusy(true);
+		// setTimeout(() => {
+		// 	setBusy(false);
+		// 	navigate(ScreenNames.TransactionSuccessScreen, { amount });
+		// }, 3000);
 	};
 
 	return (
