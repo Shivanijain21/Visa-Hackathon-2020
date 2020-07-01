@@ -42,7 +42,7 @@ public class RestController {
 
     @RequestMapping(value = "/fund", method = RequestMethod.POST)
     ResponseEntity<FundTransferResponse> pullFunds(@RequestBody FundTransferRequest fundTransferRequest) throws IOException {
-        return getpullfundstransactions(fundTransferRequest.getToken());
+        return getpullfundstransactions(fundTransferRequest.getToken(), fundTransferRequest.getAmount());
     }
 
 
@@ -79,7 +79,7 @@ public class RestController {
         api = new FundsTransferApi(apiClient);
     }
 
-    public ResponseEntity<FundTransferResponse> getpullfundstransactions(String token) throws IOException {
+    public ResponseEntity<FundTransferResponse> getpullfundstransactions(String token, String amount) throws IOException {
         String jsonPayload = transformPayload("{\"localTransactionDateTime\": \"2016-11-16T23:33:06\", \"businessApplicationId\": \"AA\", \"cpsAuthorizationCharacteristicsIndicator\": \"Y\", \"senderCardExpiryDate\": \"2015-10\", \"amount\": \"124.02\", \"acquirerCountryCode\": \"840\", \"retrievalReferenceNumber\": \"330000550000\", \"cardAcceptor\": {\"idCode\": \"ABCD1234ABCD123\", \"address\": {\"county\": \"081\", \"country\": \"USA\", \"state\": \"CA\", \"zipCode\": \"94404\"}, \"terminalId\": \"ABCD1234\", \"name\": \"Visa Inc. USA-Foster City\"}, \"acquiringBin\": \"408999\", \"systemsTraceAuditNumber\": \"451001\", \"nationalReimbursementFee\": \"11.22\", \"senderCurrencyCode\": \"USD\", \"cavv\": \"0700100038238906000013405823891061668252\", \"foreignExchangeFeeTransaction\": \"11.99\", \"addressVerificationData\": {\"postalCode\": \"12345\", \"street\": \"XYZ St\"}, \"senderPrimaryAccountNumber\": \"4895142232120006\", \"surcharge\": \"11.99\"}");
         ObjectMapper mapper = new ObjectMapper();
         FundTransferResponse
@@ -87,6 +87,7 @@ public class RestController {
         try {
             PullfundspostPayload body = mapper.readValue(jsonPayload, PullfundspostPayload.class);
             body.setSenderPrimaryAccountNumber(token);
+            body.setAmount(Double.valueOf(amount));
 
             String statusIdentifier = api.postpullfunds(body, new ParameterizedTypeReference<String>() {
             }, String.class, true);
