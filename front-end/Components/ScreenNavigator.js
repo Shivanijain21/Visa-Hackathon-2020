@@ -13,7 +13,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ScreenNames from '../Screens/Names';
 import InputCredentialScreens from '../Screens/InputCredentials/ScreenObjects';
-import MainScreen from '../Screens/MainScreen';
 const Stack = createStackNavigator();
 
 export default function ScreenNavigator() {
@@ -103,9 +102,24 @@ export default function ScreenNavigator() {
 					component={SetUpFailure}
 				/>
 				<Stack.Screen
-					name={ScreenNames.MainScreen}
-					component={MainScreen}
-					options={{ title: '' }}
+					name={ScreenNames.TransactionScreen}
+					options={{
+						title: 'Merchant Name',
+						headerRight: () => (
+							<Button
+								labelStyle={{
+									color: '#FFFF',
+									margin: 20,
+									fontSize: 30,
+								}}
+								icon='account-circle'
+								onPress={() => {
+									console.log('Navigate to profile page');
+								}}
+							></Button>
+						),
+					}}
+					component={Transaction}
 				/>
 				<Stack.Screen
 					name={ScreenNames.TransactionSuccessScreen}
