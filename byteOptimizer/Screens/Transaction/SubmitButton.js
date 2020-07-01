@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'react-native-paper';
 import { StyleSheet, View } from 'react-native';
 import ScreenNames from '../Names';
+import readTag from '../../Helpers/NFCManager';
 
 const styles = StyleSheet.create({
 	Container: {
@@ -33,10 +34,12 @@ export default function ({ amount, setBusy, navigate }) {
 		return false;
 	};
 
-	const submitTransaction = () => {
+	const submitTransaction = async () => {
 		// Here we will call our backend service which will then call VISA DIRECT API
 		console.log('Submitting Transaction ...');
-
+		console.log("reading");
+		let data = readTag();
+		console.log(data);
 		// Set busy state for 3 seconds
 		setBusy(true);
 		setTimeout(() => {
