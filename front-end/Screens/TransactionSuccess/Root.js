@@ -9,39 +9,51 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
+		paddingTop: 20,
+		paddingLeft: 50,
+		paddingRight: 50,
 	},
 	SuccessText: {
 		color: '#FDBB0A',
 		fontWeight: 'bold',
-		fontSize: 50,
-		textAlign: 'center',
+		fontSize: 36,
+		paddingTop: 10,
+		flex: .5,
 	},
 	BodyText: {
 		fontSize: 24,
 		color: '#1A1F71',
 		textAlign: 'center',
-		paddingHorizontal: 50,
 		paddingBottom: 10,
+	},
+	Circle: {
+		flex: .11,
+		paddingBottom: 10,
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 });
 
 export default function TransactionSuccess({ navigation, route }) {
 	return (
 		<View style={styles.Container}>
-			<View style={{ flex: 0.6 }}>
-				<Text style={styles.SuccessText}>SUCCESS!</Text>
-				<Button
-					icon='check-circle'
-					labelStyle={{
-						color: '#08CA1B',
-						fontSize: 150,
-					}}
-				/>
+
+			<Text style={styles.SuccessText}>SUCCESS!</Text>
+
+			<View>
+				<Button icon="check-circle" style={[styles.Circle, {
+					transform: [{scale: 9}]
+				}]}/>
+			</View>
+
+			<View style={{ paddingBottom: 40 }}>
 				<Text style={styles.BodyText}>
 					Transaction of $ {route.params.amount} was processed successfully.
 				</Text>
 			</View>
-			<View style={{ flex: 0.2 }}>
+
+			<View>
 				<HomeButton />
 			</View>
 		</View>

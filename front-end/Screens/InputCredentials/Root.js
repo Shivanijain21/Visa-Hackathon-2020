@@ -1,14 +1,12 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
-import TextInput from './InputComponents/TextInput';
-import FileInput from './InputComponents/FileInput';
 
 const styles = StyleSheet.create({
 	Container: {
 		flex: 1,
-		flexDirection: 'column',
 		alignItems: 'center',
+		marginTop: 100,
 	},
 
 	Bottom: {
@@ -17,22 +15,39 @@ const styles = StyleSheet.create({
 		marginBottom: 100,
 		marginLeft: 200,
 	},
+
+	ChildContainer: {
+		flexDirection: 'row',
+		borderStyle: 'solid',
+		borderColor: '#B9B9B9',
+		borderWidth: 1,
+		padding: 5,
+	},
+
+	Text: {
+		marginHorizontal: 70,
+		color: '#C4C4C4',
+		marginVertical: 10,
+	},
 });
 
-export default function InputTextCredentialScreen({
+export default function InputCredentialScreen({
 	navigation: { navigate },
 	credentialName,
-	credentialType,
 	nextPageName,
 }) {
 	return (
 		<View style={styles.Container}>
-			<View style={{ marginTop: 100 }}>
-				{credentialType === 'File' ? (
-					<FileInput credentialName={credentialName} />
-				) : (
-					<TextInput credentialName={credentialName} />
-				)}
+			<View style={styles.ChildContainer}>
+				<Button
+					mode='contained'
+					onPress={() => {
+						console.log('Enter Credential Logic');
+					}}
+				>
+					Choose File
+				</Button>
+				<Text style={styles.Text}>{credentialName}</Text>
 			</View>
 
 			<View style={styles.Bottom}>
