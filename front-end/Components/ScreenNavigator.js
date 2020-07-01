@@ -1,18 +1,16 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { Button } from 'react-native-paper';
-import Transaction from '../Screens/Transaction/Root';
 import TransactionSuccess from '../Screens/TransactionSuccess/Root';
 import SetUp from '../Screens/SetUp/Root';
 import SetUpSuccess from '../Screens/SetUpSuccess/Root';
 import SetUpFailure from '../Screens/SetUpFailure/Root';
 import TransactionFailure from '../Screens/TransactionFail/Root';
 import InputCredential from '../Screens/InputCredentials/InputCrendential';
+import InputCredentialScreens from '../Screens/InputCredentials/ScreenObjects';
 import SubmitPage from '../Screens/SubmitPage/Root';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ScreenNames from '../Screens/Names';
-import InputCredentialScreens from '../Screens/InputCredentials/ScreenObjects';
 import MainScreen from '../Screens/MainScreen';
 const Stack = createStackNavigator();
 
