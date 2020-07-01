@@ -4,7 +4,7 @@ const setSafeData = (key, value) => {
   return setItem(key, value, {
     sharedPreferencesName: "mySharedPrefs",
     keychainService: "myKeychain",
-  }).then((value) => console.log(value));
+  });
 };
 
 const getSafeData = async (key) => {
