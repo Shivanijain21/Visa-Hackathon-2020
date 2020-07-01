@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
 
 const styles = StyleSheet.create({
 	Container: {
 		padding: 20,
+		flex: 1,
 	},
 	HeaderText: {
 		color: '#1A1F71',
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
 });
 export default function TransactionHistoryScreen({ transactions }) {
 	return (
-		<View style={styles.Container}>
+		<ScrollView style={styles.Container}>
 			<Text style={styles.HeaderText}>Transaction History</Text>
 			{transactions.map((transaction, index) => {
 				return (
@@ -45,6 +46,6 @@ export default function TransactionHistoryScreen({ transactions }) {
 					</List.Section>
 				);
 			})}
-		</View>
+		</ScrollView>
 	);
 }
