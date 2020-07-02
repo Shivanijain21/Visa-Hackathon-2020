@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'react-native-paper';
 import { StyleSheet, View } from 'react-native';
-
+import ScreenNames from '../Names';
 const styles = StyleSheet.create({
 	Button: {
 		height: 68,
@@ -11,16 +11,18 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default function () {
+export default function ({ navigate }) {
 	return (
 		<View>
 			<Button
 				contentStyle={styles.Button}
 				labelStyle={styles.Text}
 				mode='contained'
-				onPress={() => console.log('Pressed')}
+				onPress={() => {
+					navigate(ScreenNames.TransactionScreen);
+				}}
 			>
-				Return Home
+				New Transaction
 			</Button>
 		</View>
 	);

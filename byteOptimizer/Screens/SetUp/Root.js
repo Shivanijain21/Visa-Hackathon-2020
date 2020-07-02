@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-native-paper';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Image } from 'react-native';
 import ScreenNames from '../Names';
 const styles = StyleSheet.create({
 	Container: {
@@ -15,8 +15,9 @@ const styles = StyleSheet.create({
 	WelcomeText: {
 		color: '#262D9B',
 		fontWeight: 'bold',
-		fontSize: 55,
+		fontSize: 30,
 		textAlign: 'center',
+		marginVertical: 50,
 	},
 	BodyText: {
 		fontSize: 24,
@@ -24,7 +25,6 @@ const styles = StyleSheet.create({
 		fontStyle: 'italic',
 		textAlign: 'center',
 		paddingTop: 20,
-		paddingBottom: 100,
 	},
 	Button: {
 		height: 68,
@@ -38,8 +38,12 @@ const styles = StyleSheet.create({
 export default function SetUp({ navigation: { navigate } }) {
 	return (
 		<View style={styles.Container}>
+			<Image
+				source={require('./logo.png')}
+				style={{ width: 500, height: 100, margin: 20 }}
+			/>
+			<Text style={styles.BodyText}>Get paid from any where, any time</Text>
 			<Text style={styles.WelcomeText}>WELCOME!</Text>
-			<Text style={styles.BodyText}>Insert slogan here</Text>
 			<Button
 				contentStyle={styles.Button}
 				labelStyle={styles.Text}
