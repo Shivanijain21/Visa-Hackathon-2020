@@ -37,12 +37,9 @@ export default function ({ amount, setBusy, navigate }) {
 		return false;
 	};
 	function setupNFC() {
-		//console.log("****************-------in setupnfc func---------***************");
-		// NfcManager.start();
-		//console.log("****************-------after start---------***************");
+
 		NfcManager.setEventListener(NfcEvents.DiscoverTag, tag => {
-			//console.log('*********tag***********\n', tag);
-			//console.log(tag["ndefMessage"][0].payload);
+
 			let pay = tag["ndefMessage"][0].payload;
 			pay = pay.slice(3, pay.length)
 			pay = String.fromCharCode(...pay)
@@ -54,52 +51,40 @@ export default function ({ amount, setBusy, navigate }) {
 			NfcManager.unregisterTagEvent().catch(() => 0);
 			let data = {
 				token: pay,
-				amount: { amount }
+				amount
 			}
 			console.log(data);
-			setBusy(true);
-			setTimeout(() => {
-				setBusy(false);
-				navigate(ScreenNames.TransactionSuccessScreen, { amount });
-			}, 3000);
+			axios.post('https://fund-transfer.herokuapp.com/fund', data).
+				then((res) => {
+					console.log("success");
+					setBusy(false);
+					navigate(ScreenNames.TransactionSuccessScreen, { amount });
+				}).catch((err) => {
+					console.log(err);
+					setBusy(false);
+					navigate(ScreenNames.TransactionFailureScreen);
+				});
+			// setTimeout(() => {
+			// 	setBusy(false);
+			// 	navigate(ScreenNames.TransactionSuccessScreen, { amount });
+			// }, 3000);
 		});
 	};
 
 	const submitTransaction = async () => {
 		// Here we will call our backend service which will then call VISA DIRECT API
 		console.log("**********************in button function************************")
-		let data = {
-			"token": "4895142232120006",
-			"amount": "232"
-		}
 		setBusy(true);
-		axios.post('https://fund-transfer.herokuapp.com/fund', data).
-			then((res) => {
-				console.log("came from backend");
-				console.log(res);
-				setBusy(false);
-				navigate(ScreenNames.TransactionSuccessScreen, { amount });
-			});
 		console.log('Submitting Transaction ...');
 		console.log("reading");
-
 		await setupNFC();
 		try {
 			console.log("from register tag");
 			await NfcManager.registerTagEvent();
-			// console.log("********-------data---------*********\n")
-			// console.log(data);
 		} catch (ex) {
 			console.warn('ex', ex);
 			NfcManager.unregisterTagEvent().catch(() => 0);
 		}
-		// console.log(data);
-		// Set busy state for 3 seconds
-		// setBusy(true);
-		// setTimeout(() => {
-		// 	setBusy(false);
-		// 	navigate(ScreenNames.TransactionSuccessScreen, { amount });
-		// }, 3000);
 
 	};
 
