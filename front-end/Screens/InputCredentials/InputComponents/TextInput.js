@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextInput } from 'react-native';
 
-export default function ({ credentialName }) {
+export default function ({ credentialName, setInput }) {
 	return (
 		<TextInput
 			style={{
@@ -12,6 +12,7 @@ export default function ({ credentialName }) {
 				borderColor: 'gray',
 				borderWidth: 1,
 			}}
+			onChangeText={(text) => setInput(text)}
 			placeholder={`Paste ${credentialName}`}
 		/>
 	);
