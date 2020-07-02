@@ -3,6 +3,9 @@ import { Button } from 'react-native-paper';
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import ScreenNames from '../Names';
 import { Dialog, Portal } from 'react-native-paper';
+import NfcManager, { NfcEvents } from 'react-native-nfc-manager';
+import axios from 'axios';
+
 
 const monthNames = [
 	'January',
@@ -40,7 +43,7 @@ const styles = StyleSheet.create({
 });
 
 export default function ({
-	amount,
+	amount = "",
 	navigate,
 	setAmount,
 	transactions,
@@ -53,42 +56,98 @@ export default function ({
 	const [waitingText, setWaitingText] = useState(tokenWaitingText);
 	const [busy, setBusy] = useState(false);
 
-	const submitTransaction = () => {
+	const submitTransaction = (data) => {
 		// ***********************************************************************
 		// ENTER AXIOS CALL TO OUR BACKEND SERVICE WHICH WILL CALL VISA DIRECT API
 		// ***********************************************************************
-		setTimeout(() => {
-			// Turn off spinner
-			setBusy(false);
-			// Clear the amount
-			setAmount('');
-			// Change waiting text for next transaction
-			setWaitingText(tokenWaitingText);
-			// Adds a new transaction to the transaction history
-			const dateNow = new Date();
-			setTransactions([
-				{
-					Name: 'Johan Guzman',
-					Amount: parseFloat(amount),
-					Date: `${monthNames[dateNow.getMonth()]} ${dateNow.getDate()}`,
-				},
-				...transactions,
-			]);
-			// Navigate to the success page
-			navigate(ScreenNames.TransactionSuccessScreen, { amount });
-		}, 3000);
+		axios.post('https://fund-transfer.herokuapp.com/fund', data).
+			then((res) => {
+				console.log("success");
+				setBusy(false);
+				setWaitingText(tokenWaitingText)
+				setAmount('');
+				const dateNow = new Date();
+				setTransactions([
+					{
+						Name: 'Johan Guzman',
+						Amount: parseFloat(amount),
+						Date: `${monthNames[dateNow.getMonth()]} ${dateNow.getDate()}`,
+					},
+					...transactions,
+				]);
+				navigate(ScreenNames.TransactionSuccessScreen, { amount });
+			}).catch((err) => {
+				console.log(err);
+				setBusy(false);
+				setAmount('');
+				navigate(ScreenNames.TransactionFailureScreen);
+			});
+		// setTimeout(() => {
+		// 	// Turn off spinner
+		// 	setBusy(false);
+		// 	// Clear the amount
+		// 	setAmount('');
+		// 	// Change waiting text for next transaction
+		// 	setWaitingText(tokenWaitingText);
+		// 	// Adds a new transaction to the transaction history
+		// 	const dateNow = new Date();
+		// 	setTransactions([
+		// 		{
+		// 			Name: 'Johan Guzman',
+		// 			Amount: parseFloat(amount),
+		// 			Date: `${monthNames[dateNow.getMonth()]} ${dateNow.getDate()}`,
+		// 		},
+		// 		...transactions,
+		// 	]);
+		// 	// Navigate to the success page
+		// 	navigate(ScreenNames.TransactionSuccessScreen, { amount });
+		// }, 3000);
 	};
+	function setupNFC() {
 
-	const startTransaction = () => {
+		NfcManager.setEventListener(NfcEvents.DiscoverTag, tag => {
+
+			let pay = tag["ndefMessage"][0].payload;
+			pay = pay.slice(3, pay.length)
+			pay = String.fromCharCode(...pay)
+			console.log("********-------START-------*********\n")
+			console.log(pay + "\n")
+			console.log("********-------END---------*********\n")
+			console.log("Printing pay::   " + pay);
+			NfcManager.setAlertMessageIOS('I got your tag!');
+			NfcManager.unregisterTagEvent().catch(() => 0);
+			let data = {
+				token: pay,
+				amount
+			}
+			console.log(data);
+			submitTransaction(data);
+
+			// setTimeout(() => {
+			// 	setBusy(false);
+			// 	navigate(ScreenNames.TransactionSuccessScreen, { amount });
+			// }, 3000);
+		});
+	};
+	const startTransaction = async () => {
 		// *****************************************************
 		// TO DO:  ENTER CODE TO RECEIVE TOKEN USING NFC Manager
 		// *****************************************************
+
 		setBusy(true);
-		setTimeout(() => {
-			// Change waiting text to submit payment
-			setWaitingText(submitWaitingText);
-			submitTransaction();
-		}, 3000);
+		await setupNFC();
+		try {
+			console.log("from register tag");
+			await NfcManager.registerTagEvent();
+		} catch (ex) {
+			console.warn('ex', ex);
+			NfcManager.unregisterTagEvent().catch(() => 0);
+		}
+		// setTimeout(() => {
+		// 	// Change waiting text to submit payment
+		// 	setWaitingText(submitWaitingText);
+		// 	submitTransaction();
+		// }, 3000);
 	};
 
 	const isAmountValid = () => {

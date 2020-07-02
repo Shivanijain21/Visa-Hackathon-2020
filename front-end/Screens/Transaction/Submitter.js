@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
 });
 
 export default function ({
-	amount,
+	amount = "",
 	navigate,
 	setAmount,
 	transactions,
