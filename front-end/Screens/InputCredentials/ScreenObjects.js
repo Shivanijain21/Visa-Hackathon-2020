@@ -22,16 +22,4 @@ export default InputCredentialScreens = [
 		step: '3',
 		NextPage: ScreenNames.SubmitPageScreen,
 	},
-	// {
-	// 	Name: ScreenNames.InputCredentialsStep4,
-	// 	Credential: 'Key',
-	// 	step: '4',
-	// 	NextPage: ScreenNames.InputCredentialsStep5,
-	// },
-	// {
-	// 	Name: ScreenNames.InputCredentialsStep5,
-	// 	Credential: 'Client Cert. File',
-	// 	step: '5',
-	// 	NextPage: ScreenNames.SubmitPageScreen,
-	// },
 ];

@@ -4,19 +4,20 @@ import { StyleSheet, View } from 'react-native';
 import ScreenNames from '../Names';
 const styles = StyleSheet.create({
 	Button: {
-		height: 68,
-		backgroundColor: '#FDBB0A',
+        height: 68,
+        backgroundColor: '#FDBB0A',
 	},
 	Text: {
 		fontSize: 28,
-	},
+    },
+    Container:{
+    }
 });
 
 export default function ({ navigate }) {
 	return (
 		<View style={styles.Container}>
 			<Button
-				style={{ marginVertical: 20 }}
 				contentStyle={styles.Button}
 				labelStyle={styles.Text}
 				mode='contained'

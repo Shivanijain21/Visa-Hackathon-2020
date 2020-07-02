@@ -45,7 +45,7 @@ export default function TransactionSuccess({
 				</Text>
 			</View>
 			<View style={{ flex: 0.2 }}>
-				<HomeButton navigate={navigate}/>
+				<HomeButton navigate={navigate} />
 			</View>
 		</View>
 	);

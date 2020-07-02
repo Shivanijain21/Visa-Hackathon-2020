@@ -5,7 +5,7 @@ import SetUp from '../Screens/SetUp/Root';
 import SetUpSuccess from '../Screens/SetUpSuccess/Root';
 import SetUpFailure from '../Screens/SetUpFailure/Root';
 import TransactionFailure from '../Screens/TransactionFail/Root';
-import InputCredential from '../Screens/InputCredentials/InputCrendential';
+import InputCredential from '../Screens/InputCredentials/InputCredential';
 import InputCredentialScreens from '../Screens/InputCredentials/ScreenObjects';
 import SubmitPage from '../Screens/SubmitPage/Root';
 import { NavigationContainer } from '@react-navigation/native';
